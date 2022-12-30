@@ -1,5 +1,5 @@
 <template>
-    <img :src="img"/>
+    <img :src="img" class="card-img-top"/>
 </template>
 
 <script>
@@ -27,7 +27,6 @@ export default {
             axios(config)
             .then((response) => {
              this.img = response.data.sprites.front_default
-             console.log(this.img)
             })
             .catch((e) => {
               console.log(e);
