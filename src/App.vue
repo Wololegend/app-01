@@ -12,8 +12,11 @@
         :name="pokemon.name" :url="pokemon.url"
       />
     </b-row>
-  </b-container> -->
+  </b-container> ESTO SÓLO FUNCIONA CON BOOTSTRAP VUE INSTALADO-->
 
+<!-- La página está dividida en una serie de rows y cols. No podemos controlar cuántos hay,
+sólo cuántos rows/cols mide cada uno de nuestros elementos. La img de Pokemon mide 12 cols,
+mientras que la PokeCard (cada una) sólo 3. -->
   <div class="container">
     <div class="row p-2">
         <div class="col-lg-12 mb-2">
@@ -21,13 +24,14 @@
             alt="Pokemon logo"
             src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"
           />
+        </div>
         <pokeCard class="col-lg-3"
           v-for="pokemon in arrayDatos"
           :key="pokemon"
-          :name="pokemon.name"
+          :name="capitalizeFirstLetter(pokemon.name)"
           :url="pokemon.url"
-        />
-        </div>
+        >
+        </pokeCard>
     </div>
 </div>
 </template>
@@ -48,7 +52,6 @@ export default {
   },
   created() {
     this.getPokemon();
-    this.capitalizeFirstLetter(this.arrayDatos);
   },
   methods: {
     getPokemon() {
@@ -67,13 +70,13 @@ export default {
           console.log(e);
         });
     },
-    capitalizeFirstLetter(arr) {
-      arr.forEach(element => {
-        const word = element.name
+    capitalizeFirstLetter(name) {
+        const word = name
         const firstLetter = word.charAt(0).toUpperCase()
         const remainingLetter = word.slice(1)
-        element.name = firstLetter + remainingLetter
-      });
+        name = firstLetter + remainingLetter
+
+        return name
     }
   }
 }
